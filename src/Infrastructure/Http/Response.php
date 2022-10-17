@@ -7,37 +7,37 @@ namespace Romanpravda\KcTestTask\Infrastructure\Http;
 final class Response
 {
     /**
-     *
+     * Response's data.
      *
      * @var array
      */
     private array $responseArray;
 
     /**
-     *
+     * Response's HTTP status code.
      *
      * @var int
      */
     private int $httpCode;
 
     /**
-     *
+     * Response's headers.
      *
      * @var array
      */
     private array $headers;
 
-    public function __construct(array $responseArray, int $httpCode = 200, array $headers = [
-        'Content-Type' => 'application/json',
-    ])
+    public function __construct(array $responseArray, int $httpCode = 200, array $headers = [])
     {
         $this->responseArray = $responseArray;
         $this->httpCode = $httpCode;
         $this->headers = $headers;
+
+        $this->headers['Content-Type'] = 'application/json';
     }
 
     /**
-     *
+     * Getting response's data.
      *
      * @return array
      */
@@ -47,7 +47,7 @@ final class Response
     }
 
     /**
-     *
+     * Retrieving response's data as json string.
      *
      * @return string
      *
@@ -59,7 +59,7 @@ final class Response
     }
 
     /**
-     *
+     * Getting response's HTTP status code.
      *
      * @return int
      */
@@ -69,7 +69,7 @@ final class Response
     }
 
     /**
-     *
+     * Setting response's HTTP status code.
      *
      * @param int $httpCode
      *
@@ -82,7 +82,7 @@ final class Response
     }
 
     /**
-     *
+     * Getting response's headers.
      *
      * @return array
      */
@@ -92,7 +92,7 @@ final class Response
     }
 
     /**
-     *
+     * Adding new headers to response's headers.
      *
      * @param array $headers
      *
@@ -108,7 +108,7 @@ final class Response
     }
 
     /**
-     *
+     * Rewriting response's headers.
      *
      * @param array $headers
      *

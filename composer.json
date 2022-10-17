@@ -11,6 +11,7 @@
   "require": {
     "php": "^7.4",
     "ext-pdo": "*",
+    "ext-json": "*",
     "lcobucci/jwt": "^4.2",
     "league/route": "^5.1",
     "league/container": "^4.2",
