@@ -1,0 +1,21 @@
+{
+  "name": "romanpravda/kc-test-task",
+  "type": "project",
+  "description": "Test task for Knowledge City",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "Romanpravda\\KcTestTask\\": "src/"
+    }
+  },
+  "require": {
+    "php": "^7.4",
+    "lcobucci/jwt": "^4.2",
+    "league/route": "^5.1",
+    "league/container": "^4.2",
+    "nyholm/psr7": "^1.5",
+    "nyholm/psr7-server": "^1.0",
+    "fakerphp/faker": "^1.20",
+    "laminas/laminas-httphandlerrunner": "^2.2"
+  }
+}
