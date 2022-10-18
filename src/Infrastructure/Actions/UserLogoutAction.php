@@ -12,6 +12,9 @@ use Romanpravda\KcTestTask\Exceptions\Repositories\PDOException;
 use Romanpravda\KcTestTask\Infrastructure\Http\Factories\Response\ResponseFactoryInterface;
 use Romanpravda\KcTestTask\Infrastructure\Http\Response;
 
+/**
+ * @codeCoverageIgnore
+ */
 final class UserLogoutAction
 {
     /**

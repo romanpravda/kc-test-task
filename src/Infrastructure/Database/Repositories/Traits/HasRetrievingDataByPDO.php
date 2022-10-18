@@ -8,6 +8,9 @@ use PDO;
 use Romanpravda\KcTestTask\Exceptions\Repositories\PDOException;
 use Romanpravda\KcTestTask\Support\Criteria\Criteria;
 
+/**
+ * @codeCoverageIgnore
+ */
 trait HasRetrievingDataByPDO
 {
     use HasCriteriaFilter;
@@ -26,6 +29,11 @@ trait HasRetrievingDataByPDO
     private function retrieveDataById(PDO $PDO, string $sql, int $id): ?array
     {
         $statement = $PDO->prepare($sql);
+        if ($statement === false) {
+            $error = $this->PDO->errorInfo();
+            throw PDOException::create($error[0], $error[1], $error[2]);
+        }
+
         $statement->bindParam(':id', $id, PDO::PARAM_INT);
 
         $res = $statement->execute();
@@ -56,6 +64,11 @@ trait HasRetrievingDataByPDO
     private function retrieveDataByCriteria(PDO $PDO, string $sql, Criteria $criteria): array
     {
         $statement = $PDO->prepare($sql);
+        if ($statement === false) {
+            $error = $this->PDO->errorInfo();
+            throw PDOException::create($error[0], $error[1], $error[2]);
+        }
+
         $statement = $this->getValuesForQueryFromCriteria($statement, $criteria);
 
         $res = $statement->execute();

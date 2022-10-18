@@ -14,6 +14,9 @@ use Romanpravda\KcTestTask\Exceptions\Repositories\PDOException;
 use Romanpravda\KcTestTask\Infrastructure\Database\Repositories\Traits\HasRetrievingDataByPDO;
 use Romanpravda\KcTestTask\Support\Criteria\Criteria;
 
+/**
+ * @codeCoverageIgnore
+ */
 final class PDOUserRepository implements UserRepositoryInterface
 {
     use HasRetrievingDataByPDO;
@@ -103,6 +106,10 @@ final class PDOUserRepository implements UserRepositoryInterface
 
         $sql = 'INSERT INTO `users` (`email`, `username`, `password`, `created_at`, `created_at_timezone`, `updated_at`, `updated_at_timezone`) VALUES (:email, :username, :password, CONVERT_TZ(:created_at, :timezone, :utc), :timezone, CONVERT_TZ(:updated_at, :timezone, :utc), :timezone)';
         $statement = $this->PDO->prepare($sql);
+        if ($statement === false) {
+            $error = $this->PDO->errorInfo();
+            throw PDOException::create($error[0], $error[1], $error[2]);
+        }
 
         $res = $statement->execute([
             ':email' => $user->getEmail(),
@@ -142,6 +149,10 @@ final class PDOUserRepository implements UserRepositoryInterface
 
         $sql = 'UPDATE `users` SET `email` = :email, `username` = :username, `password` = :password, `updated_at` = CONVERT_TZ(:updated_at, :timezone, :utc), `updated_at_timezone` = :timezone WHERE `user_id` = :user_id';
         $statement = $this->PDO->prepare($sql);
+        if ($statement === false) {
+            $error = $this->PDO->errorInfo();
+            throw PDOException::create($error[0], $error[1], $error[2]);
+        }
 
         $res = $statement->execute([
             ':email' => $user->getEmail(),
@@ -174,6 +185,10 @@ final class PDOUserRepository implements UserRepositoryInterface
     {
         $sql = 'DELETE FROM `users` WHERE `user_id` = :user_id';
         $statement = $this->PDO->prepare($sql);
+        if ($statement === false) {
+            $error = $this->PDO->errorInfo();
+            throw PDOException::create($error[0], $error[1], $error[2]);
+        }
 
         $res = $statement->execute([
             ':user_id' => $user->getId(),
@@ -204,8 +219,11 @@ final class PDOUserRepository implements UserRepositoryInterface
         }
 
         $sql = sprintf('DELETE FROM `users` WHERE %s', $criteria->getFilter()->getQuery());
-
         $statement = $this->PDO->prepare($sql);
+        if ($statement === false) {
+            $error = $this->PDO->errorInfo();
+            throw PDOException::create($error[0], $error[1], $error[2]);
+        }
 
         $res = $statement->execute($criteria->getFilter()->getValue());
         if ($res === false) {

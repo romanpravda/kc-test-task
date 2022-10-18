@@ -16,6 +16,9 @@ use Romanpravda\KcTestTask\Support\Criteria\Criteria;
 use Romanpravda\KcTestTask\Support\Criteria\Filters\EqualsFilter;
 use Romanpravda\KcTestTask\Support\Criteria\Order;
 
+/**
+ * @codeCoverageIgnore
+ */
 final class UserStudentsListAction
 {
     /**

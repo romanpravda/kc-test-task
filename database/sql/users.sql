@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS `kc-test-task`.`users`
+CREATE TABLE IF NOT EXISTS `users`
 (
     `user_id`             INT AUTO_INCREMENT PRIMARY KEY,
     `email`               VARCHAR(255) NOT NULL,
@@ -15,4 +15,4 @@ CREATE TABLE IF NOT EXISTS `kc-test-task`.`users`
 );
 
 CREATE INDEX `users_created_at_created_at_timezone_index`
-    ON `kc-test-task`.`users` (`created_at`, `created_at_timezone`);
+    ON `users` (`created_at`, `created_at_timezone`);

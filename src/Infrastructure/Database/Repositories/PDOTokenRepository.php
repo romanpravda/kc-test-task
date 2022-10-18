@@ -13,6 +13,9 @@ use Romanpravda\KcTestTask\Exceptions\Repositories\PDOException;
 use Romanpravda\KcTestTask\Infrastructure\Database\Repositories\Traits\HasRetrievingDataByPDO;
 use Romanpravda\KcTestTask\Support\Criteria\Criteria;
 
+/**
+ * @codeCoverageIgnore
+ */
 final class PDOTokenRepository implements TokenRepositoryInterface
 {
     use HasRetrievingDataByPDO;
@@ -70,6 +73,10 @@ final class PDOTokenRepository implements TokenRepositoryInterface
 
         $sql = 'INSERT INTO `tokens` (`user_id`, `created_at`, `created_at_timezone`) VALUES (:user_id, CONVERT_TZ(:created_at, :timezone, :utc), :timezone)';
         $statement = $this->PDO->prepare($sql);
+        if ($statement === false) {
+            $error = $this->PDO->errorInfo();
+            throw PDOException::create($error[0], $error[1], $error[2]);
+        }
 
         $res = $statement->execute([
             ':user_id' => $token->getUserId(),
@@ -104,6 +111,10 @@ final class PDOTokenRepository implements TokenRepositoryInterface
     {
         $sql = 'DELETE FROM `tokens` WHERE `token_id` = :token_id';
         $statement = $this->PDO->prepare($sql);
+        if ($statement === false) {
+            $error = $this->PDO->errorInfo();
+            throw PDOException::create($error[0], $error[1], $error[2]);
+        }
 
         $res = $statement->execute([
             ':token_id' => $token->getId(),
@@ -134,8 +145,11 @@ final class PDOTokenRepository implements TokenRepositoryInterface
         }
 
         $sql = sprintf('DELETE FROM `tokens` WHERE %s', $criteria->getFilter()->getQuery());
-
         $statement = $this->PDO->prepare($sql);
+        if ($statement === false) {
+            $error = $this->PDO->errorInfo();
+            throw PDOException::create($error[0], $error[1], $error[2]);
+        }
 
         $res = $statement->execute($criteria->getFilter()->getValue());
         if ($res === false) {

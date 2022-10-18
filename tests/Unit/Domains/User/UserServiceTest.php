@@ -31,7 +31,7 @@ final class UserServiceTest extends TestCase
     {
         $faker = Factory::create(Factory::DEFAULT_LOCALE);
 
-        $key = base64_encode($this->random_str());
+        $key = base64_encode($this->generateRandomString());
         $signer = new Sha256();
         $tokenRepository = new MockedTokenRepository();
         $tokenService = new JWTTokenService($key, $signer, $tokenRepository);
@@ -66,7 +66,7 @@ final class UserServiceTest extends TestCase
     {
         $faker = Factory::create(Factory::DEFAULT_LOCALE);
 
-        $key = base64_encode($this->random_str());
+        $key = base64_encode($this->generateRandomString());
         $signer = new Sha256();
         $tokenRepository = new MockedTokenRepository();
         $tokenService = new JWTTokenService($key, $signer, $tokenRepository);
@@ -85,7 +85,7 @@ final class UserServiceTest extends TestCase
     {
         $faker = Factory::create(Factory::DEFAULT_LOCALE);
 
-        $key = base64_encode($this->random_str());
+        $key = base64_encode($this->generateRandomString());
         $signer = new Sha256();
         $tokenRepository = new MockedTokenRepository();
         $tokenService = new JWTTokenService($key, $signer, $tokenRepository);

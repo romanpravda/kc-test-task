@@ -27,7 +27,7 @@ final class JWTTokenServiceTest extends TestCase
 
     public function test_issuing_token(): void
     {
-        $key = base64_encode($this->random_str());
+        $key = base64_encode($this->generateRandomString());
         $signer = new Sha256();
         $repository = new MockedTokenRepository();
 
@@ -52,7 +52,7 @@ final class JWTTokenServiceTest extends TestCase
 
     public function test_issuing_token_check_expire(): void
     {
-        $key = base64_encode($this->random_str());
+        $key = base64_encode($this->generateRandomString());
         $signer = new Sha256();
         $repository = new MockedTokenRepository();
 
@@ -76,7 +76,7 @@ final class JWTTokenServiceTest extends TestCase
 
     public function test_get_user_from_token(): void
     {
-        $key = base64_encode($this->random_str());
+        $key = base64_encode($this->generateRandomString());
         $signer = new Sha256();
         $repository = new MockedTokenRepository();
 
@@ -105,7 +105,7 @@ final class JWTTokenServiceTest extends TestCase
 
     public function test_get_user_from_token_check_expire(): void
     {
-        $key = base64_encode($this->random_str());
+        $key = base64_encode($this->generateRandomString());
         $signer = new Sha256();
         $repository = new MockedTokenRepository();
 
@@ -134,7 +134,7 @@ final class JWTTokenServiceTest extends TestCase
 
     public function test_get_user_from_token_not_found(): void
     {
-        $key = base64_encode($this->random_str());
+        $key = base64_encode($this->generateRandomString());
         $signer = new Sha256();
         $repository = new MockedTokenRepository();
 
@@ -161,7 +161,7 @@ final class JWTTokenServiceTest extends TestCase
 
     public function test_revoking_token(): void
     {
-        $key = base64_encode($this->random_str());
+        $key = base64_encode($this->generateRandomString());
         $signer = new Sha256();
         $repository = new MockedTokenRepository();
 
@@ -192,7 +192,7 @@ final class JWTTokenServiceTest extends TestCase
 
     public function test_revoking_token_not_found(): void
     {
-        $key = base64_encode($this->random_str());
+        $key = base64_encode($this->generateRandomString());
         $signer = new Sha256();
         $repository = new MockedTokenRepository();
 

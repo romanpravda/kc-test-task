@@ -6,6 +6,9 @@ namespace Romanpravda\KcTestTask\Exceptions\Repositories;
 
 use Exception;
 
+/**
+ * @codeCoverageIgnore
+ */
 final class NoFilterForDeleteException extends Exception
 {
     public static function create(): self

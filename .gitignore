@@ -2,3 +2,4 @@ vendor
 .idea
 docker
 .phpunit.result.cache
+coverage

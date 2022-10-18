@@ -12,3 +12,7 @@
 4. Install dependencies using `composer install`
 5. Seed data using `php database/seed.php`
 6. Set up nginx (or other proxy) to proxy requests to public/index.php
+
+### Tests
+
+Run `composer test` to run tests

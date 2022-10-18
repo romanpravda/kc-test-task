@@ -33,7 +33,7 @@ final class MockedUserRepository implements UserRepositoryInterface
      */
     public function findById(int $id): ?User
     {
-        return $this->tokens[$id] ?? null;
+        return $this->users[$id] ?? null;
     }
 
     /**

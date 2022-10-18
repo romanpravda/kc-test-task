@@ -13,6 +13,9 @@ use Romanpravda\KcTestTask\Exceptions\Repositories\PDOException;
 use Romanpravda\KcTestTask\Infrastructure\Database\Repositories\Traits\HasRetrievingDataByPDO;
 use Romanpravda\KcTestTask\Support\Criteria\Criteria;
 
+/**
+ * @codeCoverageIgnore
+ */
 final class PDOStudentRepository implements StudentRepositoryInterface
 {
     use HasRetrievingDataByPDO;
@@ -93,6 +96,10 @@ final class PDOStudentRepository implements StudentRepositoryInterface
 
         $sql = 'INSERT INTO `students` (`user_id`, `full_name`, `group`, `created_at`, `created_at_timezone`, `updated_at`, `updated_at_timezone`) VALUES (:user_id, :full_name, :group, CONVERT_TZ(:created_at, :timezone, :utc), :timezone, CONVERT_TZ(:updated_at, :timezone, :utc), :timezone)';
         $statement = $this->PDO->prepare($sql);
+        if ($statement === false) {
+            $error = $this->PDO->errorInfo();
+            throw PDOException::create($error[0], $error[1], $error[2]);
+        }
 
         $res = $statement->execute([
             ':user_id' => $student->getUserId(),
@@ -132,6 +139,10 @@ final class PDOStudentRepository implements StudentRepositoryInterface
 
         $sql = 'UPDATE `students` SET `user_id` = :user_id, `full_name` = :full_name, `group` = :group, `updated_at` = CONVERT_TZ(:updated_at, :timezone, :utc), `updated_at_timezone` = :timezone WHERE `student_id` = :student_id';
         $statement = $this->PDO->prepare($sql);
+        if ($statement === false) {
+            $error = $this->PDO->errorInfo();
+            throw PDOException::create($error[0], $error[1], $error[2]);
+        }
 
         $res = $statement->execute([
             ':user_id' => $student->getUserId(),
@@ -164,6 +175,10 @@ final class PDOStudentRepository implements StudentRepositoryInterface
     {
         $sql = 'DELETE FROM `students` WHERE `student_id` = :student_id';
         $statement = $this->PDO->prepare($sql);
+        if ($statement === false) {
+            $error = $this->PDO->errorInfo();
+            throw PDOException::create($error[0], $error[1], $error[2]);
+        }
 
         $res = $statement->execute([
             ':student_id' => $student->getId(),
@@ -194,8 +209,11 @@ final class PDOStudentRepository implements StudentRepositoryInterface
         }
 
         $sql = sprintf('DELETE FROM `students` WHERE %s', $criteria->getFilter()->getQuery());
-
         $statement = $this->PDO->prepare($sql);
+        if ($statement === false) {
+            $error = $this->PDO->errorInfo();
+            throw PDOException::create($error[0], $error[1], $error[2]);
+        }
 
         $res = $statement->execute($criteria->getFilter()->getValue());
         if ($res === false) {

@@ -7,6 +7,9 @@ namespace Romanpravda\KcTestTask\Infrastructure\Database\Repositories\Traits;
 use Romanpravda\KcTestTask\Support\Criteria\Criteria;
 use Romanpravda\KcTestTask\Support\Criteria\OrderType;
 
+/**
+ * @codeCoverageIgnore
+ */
 trait HasCriteriaFilter
 {
     /**

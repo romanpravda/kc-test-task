@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Romanpravda\KcTestTask\Infrastructure\Http;
 
+/**
+ * @codeCoverageIgnore
+ */
 final class Response
 {
     /**

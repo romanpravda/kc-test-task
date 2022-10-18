@@ -65,13 +65,13 @@ final class AuthMiddleware implements MiddlewareInterface
             return $this->responseFactory->create((new Response([]))->setHttpCode(401));
         }
 
-        $headerValue = $request->getHeader('Authorization')[0];
+        $headerValue = $request->getHeader('Authorization')[0] ?? '';
         if (strpos($headerValue, 'Bearer') === false) {
             return $this->responseFactory->create((new Response([]))->setHttpCode(401));
         }
 
         try {
-            $token = str_replace('Bearer ', '', $request->getHeader('Authorization')[0]);
+            $token = str_replace('Bearer ', '', $headerValue);
             $userId = $this->tokenService->getUserIdFromToken($token);
             $user = $this->userRepository->findById($userId);
             if (is_null($user)) {
