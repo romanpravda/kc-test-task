@@ -56,7 +56,7 @@ final class User
      */
     public function __construct(?int $id, string $email, string $username, string $password, ?PasswordHasherInterface $passwordHasher = null)
     {
-        $this->setId($id);
+        $this->id = $id;
         $this->setEmail($email);
         $this->setUsername($username);
         $this->password = $password;
@@ -77,9 +77,9 @@ final class User
     /**
      * Setting user's ID.
      *
-     * @param int|null $id
+     * @param int $id
      */
-    public function setId(?int $id): void
+    public function setId(int $id): void
     {
         $this->id = $id;
     }

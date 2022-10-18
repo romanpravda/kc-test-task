@@ -31,7 +31,7 @@ interface TokenRepositoryInterface
     public function save(Token $token): Token;
 
     /**
-     * Deleting user.
+     * Deleting token.
      *
      * @param \Romanpravda\KcTestTask\Domains\Token\Token $token
      *
@@ -42,7 +42,7 @@ interface TokenRepositoryInterface
     public function delete(Token $token): bool;
 
     /**
-     * Deleting users by criteria.
+     * Deleting tokens by criteria.
      *
      * @param \Romanpravda\KcTestTask\Support\Criteria\Criteria $criteria
      *

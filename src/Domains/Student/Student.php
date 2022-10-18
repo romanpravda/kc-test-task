@@ -46,7 +46,7 @@ final class Student
      */
     public function __construct(?int $id, int $userId, string $fullName, ?string $group)
     {
-        $this->setId($id);
+        $this->id = $id;
         $this->setUserId($userId);
         $this->setFullName($fullName);
         $this->setGroup($group);
@@ -65,9 +65,9 @@ final class Student
     /**
      * Setting student's ID.
      *
-     * @param int|null $id
+     * @param int $id
      */
-    public function setId(?int $id): void
+    public function setId(int $id): void
     {
         $this->id = $id;
     }
