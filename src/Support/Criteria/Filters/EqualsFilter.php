@@ -25,13 +25,13 @@ final class EqualsFilter implements FilterInterface
      *
      * @var string
      */
-    private $keyForValue;
+    private string $keyForValue;
 
     /**
      * EqualsFilter constructor.
      *
      * @param string $column
-     * @param $value
+     * @param mixed $value
      */
     public function __construct(string $column, $value)
     {
@@ -44,7 +44,7 @@ final class EqualsFilter implements FilterInterface
     /**
      * Retrieving filter's query.
      *
-     * @return mixed
+     * @return string
      */
     public function getQuery(): string
     {

@@ -69,7 +69,9 @@ final class JWTTokenService implements TokenServiceInterface
 
         $token = $this->repository->save(new Token(null, $userId));
 
-        return (new JwtFacade(null, $clock))->issue($this->signer, $key,
+        return (new JwtFacade(null, $clock))->issue(
+            $this->signer,
+            $key,
             static fn (Builder $builder, DateTimeImmutable $issuedAt): Builder => $builder
                 ->expiresAt($issuedAt->modify('+10 minutes'))
                 ->relatedTo((string) $token->getUserId())
@@ -132,7 +134,8 @@ final class JWTTokenService implements TokenServiceInterface
         $clock = new FrozenClock(new DateTimeImmutable());
         $key = InMemory::base64Encoded($this->key);
 
-        return (new JwtFacade())->parse($jwt,
+        return (new JwtFacade())->parse(
+            $jwt,
             new SignedWith($this->signer, $key),
             new StrictValidAt($clock),
         );

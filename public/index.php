@@ -111,7 +111,7 @@ try {
     /** @var \Psr\Http\Message\ServerRequestInterface $request */
     $request = $container->get(\Nyholm\Psr7Server\ServerRequestCreator::class)->fromGlobals();
 
-    $router = new League\Route\Router;
+    $router = new League\Route\Router();
     $router->middleware($container->get(\Romanpravda\KcTestTask\Infrastructure\Http\Middlewares\DecodeJsonBodyMiddleware::class));
 
     $router->post('/auth', $container->get(\Romanpravda\KcTestTask\Infrastructure\Actions\UserAuthenticateAction::class));

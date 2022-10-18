@@ -51,7 +51,8 @@ final class UserServiceTest extends TestCase
         $clock = new FrozenClock((new DateTimeImmutable()));
         $signerKey = InMemory::base64Encoded($key);
 
-        $parsedToken = (new JwtFacade())->parse($token,
+        $parsedToken = (new JwtFacade())->parse(
+            $token,
             new SignedWith($signer, $signerKey),
             new StrictValidAt($clock),
         );

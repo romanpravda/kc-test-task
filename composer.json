@@ -15,15 +15,15 @@
   },
   "require": {
     "php": "^7.4",
-    "ext-pdo": "*",
     "ext-json": "*",
-    "lcobucci/jwt": "^4.2",
-    "league/route": "^5.1",
-    "league/container": "^4.2",
-    "nyholm/psr7": "^1.5",
-    "nyholm/psr7-server": "^1.0",
+    "ext-pdo": "*",
     "fakerphp/faker": "^1.20",
-    "laminas/laminas-httphandlerrunner": "^2.2"
+    "laminas/laminas-httphandlerrunner": "^2.2",
+    "lcobucci/jwt": "^4.2",
+    "league/container": "^4.2",
+    "league/route": "^5.1",
+    "nyholm/psr7": "^1.5",
+    "nyholm/psr7-server": "^1.0"
   },
   "require-dev": {
     "roave/security-advisories": "dev-latest",

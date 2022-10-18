@@ -39,7 +39,8 @@ final class JWTTokenServiceTest extends TestCase
         $clock = new FrozenClock((new DateTimeImmutable()));
         $signerKey = InMemory::base64Encoded($key);
 
-        $parsedToken = (new JwtFacade())->parse($token,
+        $parsedToken = (new JwtFacade())->parse(
+            $token,
             new SignedWith($signer, $signerKey),
             new StrictValidAt($clock),
         );
@@ -68,7 +69,8 @@ final class JWTTokenServiceTest extends TestCase
         $this->expectExceptionMessage('The token violates some mandatory constraints, details:
 - The token is expired');
 
-        (new JwtFacade())->parse($token,
+        (new JwtFacade())->parse(
+            $token,
             new SignedWith($signer, $signerKey),
             new StrictValidAt($clock),
         );
@@ -89,7 +91,9 @@ final class JWTTokenServiceTest extends TestCase
         $token = new Token(null, $userId);
         $token = $repository->save($token);
 
-        $tokenAsString = (new JwtFacade(null, $clock))->issue($signer, $signerKey,
+        $tokenAsString = (new JwtFacade(null, $clock))->issue(
+            $signer,
+            $signerKey,
             static fn (Builder $builder, DateTimeImmutable $issuedAt): Builder => $builder
                 ->expiresAt($issuedAt->modify('+10 minutes'))
                 ->relatedTo((string) $token->getUserId())
@@ -118,7 +122,9 @@ final class JWTTokenServiceTest extends TestCase
         $token = new Token(null, $userId);
         $token = $repository->save($token);
 
-        $tokenAsString = (new JwtFacade(null, $clock))->issue($signer, $signerKey,
+        $tokenAsString = (new JwtFacade(null, $clock))->issue(
+            $signer,
+            $signerKey,
             static fn (Builder $builder, DateTimeImmutable $issuedAt): Builder => $builder
                 ->expiresAt($issuedAt->modify('-10 minutes'))
                 ->relatedTo((string) $token->getUserId())
@@ -146,7 +152,9 @@ final class JWTTokenServiceTest extends TestCase
         $userId = 2;
         $token = new Token(null, $userId);
 
-        $tokenAsString = (new JwtFacade(null, $clock))->issue($signer, $signerKey,
+        $tokenAsString = (new JwtFacade(null, $clock))->issue(
+            $signer,
+            $signerKey,
             static fn (Builder $builder, DateTimeImmutable $issuedAt): Builder => $builder
                 ->expiresAt($issuedAt->modify('+10 minutes'))
                 ->relatedTo((string) $token->getUserId())
@@ -177,7 +185,9 @@ final class JWTTokenServiceTest extends TestCase
             $repository->findById($token->getId()),
         );
 
-        $tokenAsString = (new JwtFacade(null, $clock))->issue($signer, $signerKey,
+        $tokenAsString = (new JwtFacade(null, $clock))->issue(
+            $signer,
+            $signerKey,
             static fn (Builder $builder, DateTimeImmutable $issuedAt): Builder => $builder
                 ->expiresAt($issuedAt->modify('+10 minutes'))
                 ->relatedTo((string) $token->getUserId())
@@ -204,7 +214,9 @@ final class JWTTokenServiceTest extends TestCase
         $userId = 2;
         $token = new Token(null, $userId);
 
-        $tokenAsString = (new JwtFacade(null, $clock))->issue($signer, $signerKey,
+        $tokenAsString = (new JwtFacade(null, $clock))->issue(
+            $signer,
+            $signerKey,
             static fn (Builder $builder, DateTimeImmutable $issuedAt): Builder => $builder
                 ->expiresAt($issuedAt->modify('+10 minutes'))
                 ->relatedTo((string) $token->getUserId())

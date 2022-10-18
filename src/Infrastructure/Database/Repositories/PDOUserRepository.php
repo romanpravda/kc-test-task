@@ -61,7 +61,7 @@ final class PDOUserRepository implements UserRepositoryInterface
         $sql = 'SELECT `user_id`, `email`, `username`, `password` FROM `users` WHERE `user_id` = :id';
 
         $user = $this->retrieveDataById($this->PDO, $sql, $id);
-        if ($user === false) {
+        if (is_null($user)) {
             return null;
         }
 

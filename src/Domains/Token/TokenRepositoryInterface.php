@@ -52,5 +52,4 @@ interface TokenRepositoryInterface
      * @throws \Romanpravda\KcTestTask\Exceptions\Repositories\NoFilterForDeleteException
      */
     public function deleteByCriteria(Criteria $criteria): bool;
-
 }

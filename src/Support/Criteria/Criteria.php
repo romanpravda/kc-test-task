@@ -65,9 +65,9 @@ final class Criteria
     /**
      * Retrieving filter data.
      *
-     * @return \Romanpravda\KcTestTask\Support\Criteria\Filters\FilterInterface
+     * @return \Romanpravda\KcTestTask\Support\Criteria\Filters\FilterInterface|null
      */
-    public function getFilter(): FilterInterface
+    public function getFilter(): ?FilterInterface
     {
         return $this->filter;
     }
