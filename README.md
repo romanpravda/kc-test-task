@@ -2,7 +2,7 @@
 
 ### Requirements
 
-* PHP 7.4 with PDO extension
+* PHP 7.4 with PDO and JSON extension. Also uses mbstring extension for tests.
 
 ### How to set up it locally
 
